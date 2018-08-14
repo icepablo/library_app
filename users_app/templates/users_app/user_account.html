@@ -1,0 +1,52 @@
+{%extends 'home.html'%}
+
+{%block content%}
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Witaj, {{user}}!</h1>
+          <h2 class="jumbotron-heading">Oto ksiązki, które wypożyczyłeś:</h2>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+
+            {%for order in orders.all%}
+            <div class="col-md-4">
+              <div class="card mb-4 " style="border-radius:10px; border: 2px solid rgb(51,51,68); background-color:rgb(240,240,240) ">
+                <div class="card-body">
+                  <div class="text-center">
+                  <a ><h3>{{ order.item.title }}</h3></a>
+                    <a ><h3>ID zamówienia: {{ order.id }}</h3></a>
+                    <form id="give_back" method="POST" action="{% url 'give_back' order.id %}">
+                    {% csrf_token%}
+                    <a href="javascript:{document.getElementById('give_back').submit()}"><button style="margin-top:10px;" class="btn btn-primary btn-md "><span class="oi oi-caret-top"></span> Oddaj książkę </button></a>
+                      <input type='hidden'>
+                   </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+              {% endfor %}
+
+
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+      {%endblock%}

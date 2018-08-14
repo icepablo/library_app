@@ -1,0 +1,33 @@
+{%extends 'home.html'%}
+
+{%block content%}
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">{{author}}</h1>
+          <p class="lead text-muted">Poznaj inne książki autorów w naszej bibliotece.</p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+          {%for object in books.all%}
+            <div class="col-md-4">
+              <div class="card mb-4 " style="border-radius:10px; border: 2px solid rgb(51,51,68); background-color:rgb(240,240,240) ">
+                <div class="card-body">
+
+                  <a href="{% url 'book_detail' object.id %}"><h3 style="text-align:center">{{ object.title }}</h3></a>
+                  <p style="text-align:center">dostępnych: {{object.quantity}}</p>
+                </div>
+              </div>
+            </div>
+            {%endfor%}
+        </div>
+      </div>
+      </div>
+    </main>
+
+{%endblock%}
