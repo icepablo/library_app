@@ -1,1 +1,1 @@
-web: gunicorn biblioteka.wsgi
+web: gunicorn Library_app.wsgi
